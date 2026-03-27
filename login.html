@@ -1,414 +1,622 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录 - 活动中心管理后台</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-        :root {
-            --primary-color: #4f6ef7;
-            --primary-hover: #3b5bdb;
-            --primary-light: #eef2ff;
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #4f6ef7 50%, #3b5bdb 100%);
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-tertiary: #94a3b8;
-            --border-light: #e2e8f0;
-            --bg-primary: #f0f2f5;
-            --surface: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.03);
-            --shadow-lg: 0 16px 48px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
-            --radius: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ══════════════════════════════════════
+           Dark Theme (default)
+           ══════════════════════════════════════ */
+        :root, [data-theme="dark"] {
+            --bg-page: #060e1f;
+            --bg-card: rgba(13, 21, 42, 0.75);
+            --bg-input: rgba(15, 23, 42, 0.6);
+            --bg-input-hover: rgba(15, 23, 42, 0.8);
+            --bg-brand: transparent;
+            --bg-feature: rgba(79, 110, 247, 0.04);
+            --bg-feature-hover: rgba(79, 110, 247, 0.08);
+            --bg-ip: rgba(15, 23, 42, 0.5);
+
+            --text-1: #f1f5f9;
+            --text-2: rgba(148, 163, 184, 0.7);
+            --text-3: rgba(148, 163, 184, 0.4);
+            --text-placeholder: rgba(148, 163, 184, 0.3);
+            --text-brand-title: #f1f5f9;
+            --text-brand-sub: rgba(148, 163, 184, 0.5);
+
+            --primary: #4f6ef7;
+            --primary-rgb: 79, 110, 247;
+            --accent: #60a5fa;
+            --accent-rgb: 96, 165, 250;
+            --accent-2: #22d3ee;
+            --accent-2-rgb: 34, 211, 238;
+            --accent-3: #a78bfa;
+            --accent-3-rgb: 167, 139, 250;
+
+            --border-card: rgba(79, 110, 247, 0.1);
+            --border-input: rgba(79, 110, 247, 0.15);
+            --border-input-focus: rgba(79, 110, 247, 0.5);
+            --border-feature: rgba(79, 110, 247, 0.08);
+
+            --shadow-card: 0 24px 64px rgba(0, 0, 0, 0.4);
+            --shadow-btn: 0 4px 20px rgba(79, 110, 247, 0.25);
+            --shadow-btn-hover: 0 8px 32px rgba(79, 110, 247, 0.4);
+            --shadow-input-focus: 0 0 0 3px rgba(79, 110, 247, 0.08);
+
+            --glow-1: rgba(79, 110, 247, 0.12);
+            --glow-2: rgba(34, 211, 238, 0.08);
+            --glow-3: rgba(167, 139, 250, 0.06);
+            --ball-opacity-base: 0.03;
+            --noise-opacity: 0.03;
+
+            --captcha-bg: #0d1526;
+            --captcha-line: rgba(79, 110, 247, 0.1);
+            --captcha-dot: rgba(96, 165, 250, 0.12);
+            --captcha-text-h-base: 220;
+
+            --btn-gradient: linear-gradient(135deg, #3b5bdb 0%, #4f6ef7 50%, #667eea 100%);
+            --card-glow-color: rgba(79, 110, 247, 0.5);
+            --card-backdrop: blur(40px);
+
+            --ip-border: rgba(79, 110, 247, 0.1);
+            --footer-color: rgba(148, 163, 184, 0.3);
+            --toggle-bg: rgba(255, 255, 255, 0.06);
+            --toggle-hover: rgba(255, 255, 255, 0.12);
+            --toggle-color: rgba(148, 163, 184, 0.6);
+            --error-bg: rgba(239, 68, 68, 0.1);
+            --error-border: rgba(239, 68, 68, 0.2);
+            --error-text: #f87171;
         }
 
+        /* ══════════════════════════════════════
+           Light Theme
+           ══════════════════════════════════════ */
+        [data-theme="light"] {
+            --bg-page: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-input: #f8fafc;
+            --bg-input-hover: #f1f5f9;
+            --bg-brand: linear-gradient(135deg, #667eea 0%, #4f6ef7 50%, #3b5bdb 100%);
+            --bg-feature: rgba(255, 255, 255, 0.12);
+            --bg-feature-hover: rgba(255, 255, 255, 0.18);
+            --bg-ip: #f8fafc;
+
+            --text-1: #1e293b;
+            --text-2: #64748b;
+            --text-3: #94a3b8;
+            --text-placeholder: #cbd5e1;
+            --text-brand-title: #ffffff;
+            --text-brand-sub: rgba(255, 255, 255, 0.7);
+
+            --primary: #4f6ef7;
+            --primary-rgb: 79, 110, 247;
+            --accent: #4f6ef7;
+            --accent-rgb: 79, 110, 247;
+            --accent-2: #06b6d4;
+            --accent-2-rgb: 6, 182, 212;
+            --accent-3: #8b5cf6;
+            --accent-3-rgb: 139, 92, 246;
+
+            --border-card: #e2e8f0;
+            --border-input: #e2e8f0;
+            --border-input-focus: #4f6ef7;
+            --border-feature: rgba(255, 255, 255, 0.2);
+
+            --shadow-card: 0 16px 48px rgba(0, 0, 0, 0.08);
+            --shadow-btn: 0 4px 16px rgba(79, 110, 247, 0.3);
+            --shadow-btn-hover: 0 8px 24px rgba(79, 110, 247, 0.4);
+            --shadow-input-focus: 0 0 0 3px rgba(79, 110, 247, 0.1);
+
+            --glow-1: rgba(79, 110, 247, 0.06);
+            --glow-2: rgba(6, 182, 212, 0.04);
+            --glow-3: rgba(139, 92, 246, 0.04);
+            --ball-opacity-base: 0;
+            --noise-opacity: 0;
+
+            --captcha-bg: #f0f2f5;
+            --captcha-line: rgba(0, 0, 0, 0.06);
+            --captcha-dot: rgba(0, 0, 0, 0.08);
+            --captcha-text-h-base: 220;
+
+            --btn-gradient: linear-gradient(135deg, #667eea 0%, #4f6ef7 50%, #3b5bdb 100%);
+            --card-glow-color: transparent;
+            --card-backdrop: none;
+
+            --ip-border: #e2e8f0;
+            --footer-color: #94a3b8;
+            --toggle-bg: rgba(0, 0, 0, 0.04);
+            --toggle-hover: rgba(0, 0, 0, 0.08);
+            --toggle-color: #64748b;
+            --error-bg: #fef2f2;
+            --error-border: #fecaca;
+            --error-text: #dc2626;
+        }
+
+        /* ══ Page ══ */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: var(--bg-primary);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-page);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .login-wrapper {
-            width: 960px;
-            min-height: 560px;
-            display: flex;
-            background: var(--surface);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
             overflow: hidden;
-            animation: fadeIn 0.4s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* ===== Left Brand Panel ===== */
-        .login-brand {
-            width: 400px;
-            background: var(--primary-gradient);
-            padding: 60px 48px;
+        .page {
+            position: fixed; inset: 0;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* ══ Background Effects ══ */
+        .bg-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+        .bg-noise {
+            position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: var(--noise-opacity);
+        }
+        .bg-glow {
+            position: absolute; border-radius: 50%;
+            filter: blur(100px);
+            animation: glowPulse 10s ease-in-out infinite;
+        }
+        .bg-glow-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--glow-1) 0%, transparent 70%);
+            top: -15%; left: -5%;
+        }
+        .bg-glow-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, var(--glow-2) 0%, transparent 70%);
+            bottom: -10%; right: 10%;
+            animation-delay: -4s;
+        }
+        .bg-glow-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--glow-3) 0%, transparent 70%);
+            top: 50%; left: 40%;
+            animation-delay: -7s;
+        }
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%      { transform: scale(1.15); opacity: 0.7; }
+        }
+
+        /* Floating decorative elements */
+        .floating-items { position: absolute; inset: 0; pointer-events: none; }
+        .float-item {
+            position: absolute; border-radius: 50%;
+            border: 1px solid rgba(var(--accent-rgb), 0.25);
+            display: flex; align-items: center; justify-content: center;
+            animation: floatMove var(--dur) ease-in-out infinite;
+            opacity: var(--ball-opacity-base);
+            font-variant-numeric: tabular-nums;
+        }
+        [data-theme="dark"] .float-item { opacity: calc(var(--ball-opacity-base) + 0.02); }
+        .float-item span {
+            font-size: 10px; font-weight: 700;
+            color: rgba(var(--accent-rgb), 0.7);
+            letter-spacing: -0.5px;
+        }
+        @keyframes floatMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25%      { transform: translate(var(--dx), calc(var(--dx) * -0.6)) rotate(5deg); }
+            50%      { transform: translate(calc(var(--dx) * -0.5), var(--dx)) rotate(-3deg); }
+            75%      { transform: translate(calc(var(--dx) * 0.7), calc(var(--dx) * -0.4)) rotate(4deg); }
+        }
+
+        /* ══ Theme Toggle ══ */
+        .theme-toggle {
+            position: fixed; top: 20px; right: 24px; z-index: 100;
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--toggle-bg); border: none;
+            color: var(--toggle-color); font-size: 16px;
+            cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .theme-toggle:hover { background: var(--toggle-hover); color: var(--text-1); }
+
+        /* ══ Left Branding ══ */
+        .brand-side {
+            flex: 1 1 0; min-width: 0;
+            display: flex; align-items: center; justify-content: center;
+            padding: 40px;
+            z-index: 1;
             position: relative;
-            overflow: hidden;
         }
-
-        .login-brand::before {
-            content: '';
-            position: absolute;
-            top: -80px;
-            right: -80px;
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
+        [data-theme="light"] .brand-side {
+            background: var(--bg-brand);
+        }
+        [data-theme="light"] .brand-side::before {
+            content: ''; position: absolute;
+            top: -80px; right: -80px;
+            width: 260px; height: 260px; border-radius: 50%;
             background: rgba(255,255,255,0.08);
         }
-
-        .login-brand::after {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            left: -40px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+        [data-theme="light"] .brand-side::after {
+            content: ''; position: absolute;
+            bottom: -60px; left: -40px;
+            width: 200px; height: 200px; border-radius: 50%;
             background: rgba(255,255,255,0.05);
         }
 
         .brand-content {
-            position: relative;
-            z-index: 1;
+            display: flex; flex-direction: column; align-items: center;
+            max-width: 480px; width: 100%;
+            opacity: 0; transform: translateY(20px);
+            animation: slideIn 0.8s ease-out 0.2s forwards;
+        }
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .brand-logo {
-            width: 56px;
-            height: 56px;
+        /* Orbit animation */
+        .orbit-wrap {
+            width: 260px; height: 260px;
+            margin-bottom: 32px; position: relative;
+        }
+        [data-theme="light"] .orbit-wrap { width: 0; height: 0; margin: 0; overflow: hidden; }
+
+        .orbit-svg { width: 100%; height: 100%; }
+        .ring-outer { animation: ringSpin 60s linear infinite; transform-origin: 160px 160px; }
+        .ring-mid   { animation: ringSpinR 45s linear infinite; transform-origin: 160px 160px; }
+        .ring-inner { animation: ringSpin 30s linear infinite; transform-origin: 160px 160px; }
+        @keyframes ringSpin  { to { transform: rotate(360deg); } }
+        @keyframes ringSpinR { to { transform: rotate(-360deg); } }
+        .core-dot { animation: corePulse 2s ease-in-out infinite; transform-origin: 160px 160px; }
+        @keyframes corePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .pulse-ring {
+            transform-origin: 160px 160px;
+            animation: pulseExpand 3s ease-out infinite;
+        }
+        .pulse-ring-2 { animation-delay: 1.5s; }
+        @keyframes pulseExpand { 0% { r: 20; opacity: 0.4; } 100% { r: 55; opacity: 0; } }
+        .inner-node { animation: twinkle 2.5s ease-in-out infinite; }
+        .inner-node:nth-child(2) { animation-delay: 0.8s; }
+        .inner-node:nth-child(3) { animation-delay: 1.6s; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+        /* Light mode brand logo */
+        .brand-logo-light {
+            display: none;
+            width: 56px; height: 56px;
             background: rgba(255,255,255,0.2);
             border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 32px;
+            align-items: center; justify-content: center;
+            margin-bottom: 28px;
             backdrop-filter: blur(10px);
         }
+        [data-theme="light"] .brand-logo-light { display: flex; }
 
-        .brand-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
+        /* Text */
+        .hero-text { text-align: center; width: 100%; position: relative; z-index: 1; }
+        .hero-title {
+            font-size: 30px; font-weight: 800;
+            color: var(--text-brand-title); margin: 0 0 6px;
+            line-height: 1.2; letter-spacing: -0.3px;
+        }
+        .hero-title-thin { font-weight: 300; color: var(--text-brand-sub); }
+        [data-theme="light"] .hero-title-thin { color: rgba(255,255,255,0.7); }
+        .hero-desc {
+            font-size: 13px; font-weight: 400;
+            color: var(--text-brand-sub); margin: 0 0 32px;
+            letter-spacing: 3px;
         }
 
-        .brand-subtitle {
-            font-size: 13px;
-            color: rgba(255,255,255,0.7);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 36px;
+        /* Feature cards */
+        .features { display: flex; gap: 12px; margin-bottom: 24px; }
+        .feature {
+            flex: 1; display: flex; align-items: center; gap: 10px;
+            padding: 14px 12px;
+            background: var(--bg-feature);
+            border: 1px solid var(--border-feature);
+            border-radius: 10px;
+            transition: all 0.3s;
         }
-
-        .brand-features {
-            list-style: none;
+        .feature:hover {
+            border-color: rgba(var(--primary-rgb), 0.2);
+            background: var(--bg-feature-hover);
         }
-
-        .brand-features li {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            color: rgba(255,255,255,0.9);
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        .brand-features li i {
-            width: 32px;
-            height: 32px;
-            background: rgba(255,255,255,0.15);
+        .feature-icon {
+            width: 36px; height: 36px; flex-shrink: 0;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            flex-shrink: 0;
+            background: rgba(var(--accent-rgb), 0.08);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .feature-icon--2 { background: rgba(var(--accent-2-rgb), 0.08); }
+        .feature-icon--3 { background: rgba(var(--accent-3-rgb), 0.08); }
+        .feature-num {
+            font-size: 18px; font-weight: 800; color: var(--text-brand-title);
+            line-height: 1; margin-bottom: 2px;
+            font-variant-numeric: tabular-nums;
+        }
+        .feature-label {
+            font-size: 10px; font-weight: 400;
+            color: var(--text-brand-sub); letter-spacing: 0.5px;
         }
 
-        .brand-footer {
+        /* Status */
+        .status-bar {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; font-size: 11px; color: var(--text-3);
+            font-weight: 400; letter-spacing: 0.3px;
+        }
+        [data-theme="light"] .status-bar { color: rgba(255,255,255,0.5); }
+        .status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34,197,94,0.4);
+            animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .status-sep { color: rgba(var(--accent-rgb), 0.15); }
+
+        /* ══ Right Card ══ */
+        .form-side {
+            flex: 0 0 480px;
+            display: flex; align-items: center; justify-content: center;
+            padding: 40px; z-index: 2;
+        }
+
+        .login-card {
             position: relative;
-            z-index: 1;
-            color: rgba(255,255,255,0.5);
-            font-size: 12px;
-        }
-
-        /* ===== Right Form Panel ===== */
-        .login-form-panel {
-            flex: 1;
-            padding: 60px 56px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .form-header {
-            margin-bottom: 36px;
-        }
-
-        .form-header h2 {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .form-header p {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .error-message {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #dc2626;
-            padding: 10px 14px;
-            border-radius: var(--radius);
-            font-size: 13px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .error-message.show { display: flex; }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-tertiary);
-            font-size: 15px;
-            pointer-events: none;
-            transition: color 0.2s;
-        }
-
-        .form-input {
-            width: 100%;
-            height: 44px;
-            padding: 0 12px 0 40px;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius);
-            font-size: 14px;
-            color: var(--text-primary);
-            background: var(--surface);
-            transition: all 0.2s;
-            outline: none;
-        }
-
-        .form-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.08);
-        }
-
-        .input-wrapper:focus-within .input-icon {
-            color: var(--primary-color);
-        }
-
-        .form-input::placeholder { color: #cbd5e1; }
-
-        .password-toggle {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            cursor: pointer;
-            padding: 4px;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-
-        .password-toggle:hover { color: var(--primary-color); }
-
-        /* ===== Captcha ===== */
-        .captcha-row {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
-
-        .captcha-row .input-wrapper {
-            flex: 1;
-        }
-
-        .captcha-image {
-            width: 120px;
-            height: 44px;
-            border-radius: var(--radius);
-            cursor: pointer;
+            width: 100%; max-width: 420px;
+            background: var(--bg-card);
+            backdrop-filter: var(--card-backdrop);
+            -webkit-backdrop-filter: var(--card-backdrop);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 44px 36px 32px;
+            box-shadow: var(--shadow-card);
             overflow: hidden;
-            border: 1px solid var(--border-light);
-            flex-shrink: 0;
-            position: relative;
-            background: var(--gray-50);
+            opacity: 0; transform: translateY(20px);
+            animation: slideIn 0.6s ease-out 0.3s forwards;
         }
-
-        .captcha-image canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .captcha-image:hover::after {
-            content: '点击刷新';
+        .card-glow {
             position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            color: #fff;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--radius);
+            top: -1px; left: 20%; right: 20%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--card-glow-color), transparent);
         }
 
-        /* ===== IP Display ===== */
-        .ip-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .card-head { margin-bottom: 32px; }
+        .card-title {
+            font-size: 26px; font-weight: 700;
+            color: var(--text-1); margin: 0 0 6px;
+            letter-spacing: -0.3px;
+        }
+        .card-sub {
+            font-size: 13.5px; font-weight: 400;
+            color: var(--text-2); margin: 0;
+        }
+
+        /* Error */
+        .error-msg {
+            background: var(--error-bg);
+            border: 1px solid var(--error-border);
+            color: var(--error-text);
+            padding: 10px 14px; border-radius: 8px;
+            font-size: 13px; margin-bottom: 20px;
+            display: none; align-items: center; gap: 8px;
+        }
+        .error-msg.show { display: flex; }
+
+        /* Form */
+        .form-group { margin-bottom: 20px; }
+        .form-label {
+            display: block; font-size: 13px; font-weight: 500;
+            color: var(--text-2); margin-bottom: 6px;
+        }
+        .input-wrap { position: relative; }
+        .input-icon {
+            position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+            color: var(--text-3); font-size: 15px;
+            pointer-events: none; transition: color 0.2s;
+        }
+        .form-input {
+            width: 100%; height: 46px;
+            padding: 0 14px 0 42px;
+            border: 1px solid var(--border-input);
+            border-radius: 10px; font-size: 14px;
+            color: var(--text-1);
+            background: var(--bg-input);
+            transition: all 0.2s; outline: none;
+            font-family: inherit;
+        }
+        .form-input:hover { background: var(--bg-input-hover); }
+        .form-input:focus {
+            border-color: var(--border-input-focus);
+            box-shadow: var(--shadow-input-focus);
+            background: var(--bg-input-hover);
+        }
+        .input-wrap:focus-within .input-icon { color: var(--primary); }
+        .form-input::placeholder { color: var(--text-placeholder); }
+
+        .pwd-toggle {
+            position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+            background: none; border: none;
+            color: var(--text-3); cursor: pointer;
+            padding: 4px; font-size: 15px; transition: color 0.2s;
+        }
+        .pwd-toggle:hover { color: var(--primary); }
+
+        /* Captcha */
+        .captcha-row { display: flex; gap: 10px; align-items: center; }
+        .captcha-row .input-wrap { flex: 1; }
+        .captcha-box {
+            width: 120px; height: 46px; flex-shrink: 0;
+            border-radius: 10px; cursor: pointer;
+            border: 1px solid var(--border-input);
+            transition: all 0.2s; overflow: hidden;
+            position: relative;
+        }
+        .captcha-box canvas { width: 100%; height: 100%; display: block; }
+        .captcha-box:hover { border-color: rgba(var(--primary-rgb), 0.35); transform: scale(1.02); }
+        .captcha-box:active { transform: scale(0.98); }
+        .captcha-box:hover::after {
+            content: '刷新'; position: absolute; inset: 0;
+            background: rgba(0,0,0,0.4); color: #fff;
+            font-size: 11px; display: flex; align-items: center; justify-content: center;
+            border-radius: 10px;
+        }
+
+        /* IP */
+        .ip-bar {
+            display: flex; align-items: center; gap: 8px;
             padding: 10px 14px;
-            background: var(--gray-50);
-            border-radius: var(--radius);
-            margin-bottom: 24px;
-            border: 1px solid var(--border-light);
+            background: var(--bg-ip);
+            border: 1px solid var(--ip-border);
+            border-radius: 8px; margin-bottom: 24px;
         }
-
-        .ip-info i {
-            color: var(--text-tertiary);
-            font-size: 14px;
-        }
-
-        .ip-info span {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .ip-info .ip-address {
-            color: var(--text-primary);
-            font-weight: 500;
+        .ip-bar i { color: var(--text-3); font-size: 14px; }
+        .ip-bar span { font-size: 13px; color: var(--text-2); }
+        .ip-addr {
+            color: var(--text-1); font-weight: 500;
             font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
         }
 
-        /* ===== Button ===== */
+        /* Button */
         .btn-login {
-            width: 100%;
-            height: 44px;
-            background: var(--primary-gradient);
-            border: none;
-            border-radius: var(--radius);
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 2px 8px rgba(79, 110, 247, 0.25);
-            margin-bottom: 16px;
+            width: 100%; height: 48px;
+            background: var(--btn-gradient);
+            background-size: 200% 200%; background-position: 0% 50%;
+            border: none; border-radius: 10px;
+            color: white; font-size: 15px; font-weight: 600;
+            letter-spacing: 4px; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            box-shadow: var(--shadow-btn);
+            font-family: inherit;
         }
-
-        .btn-login:hover {
-            box-shadow: 0 4px 16px rgba(79, 110, 247, 0.35);
+        .btn-login:hover:not(.loading) {
+            background-position: 100% 50%;
+            box-shadow: var(--shadow-btn-hover);
             transform: translateY(-1px);
         }
-
-        .btn-login:active { transform: translateY(0); }
-
-        .btn-login.loading {
-            pointer-events: none;
-            opacity: 0.8;
-        }
-
+        .btn-login:active:not(.loading) { transform: translateY(0); }
+        .btn-login.loading { pointer-events: none; opacity: 0.8; }
         .btn-login .spinner {
-            width: 18px;
-            height: 18px;
+            width: 18px; height: 18px;
             border: 2px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
+            border-top-color: white; border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        .form-footer {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-tertiary);
+        .card-footer {
+            text-align: center; margin-top: 28px;
+            font-size: 11px; color: var(--footer-color);
+            letter-spacing: 0.3px;
         }
 
-        @media (max-width: 768px) {
-            body { padding: 16px; }
-
-            .login-wrapper {
-                width: 100%;
-                max-width: 440px;
-                flex-direction: column;
-                min-height: auto;
+        /* ══ Responsive ══ */
+        @media (max-width: 1100px) {
+            .orbit-wrap { width: 200px; height: 200px; margin-bottom: 24px; }
+            .hero-title { font-size: 26px; }
+            .features { gap: 8px; }
+            .feature { padding: 10px 8px; }
+            .feature-num { font-size: 16px; }
+        }
+        @media (max-width: 960px) {
+            .brand-side { padding: 32px; }
+            .form-side { flex: 0 0 440px; padding: 32px; }
+        }
+        @media (max-width: 800px) {
+            .page { flex-direction: column; }
+            .brand-side {
+                position: absolute; inset: 0; padding: 0;
             }
-
-            .login-brand {
-                width: 100%;
-                padding: 36px 32px;
-                min-height: auto;
+            .brand-content {
+                position: absolute; top: 3vh; left: 50%;
+                transform: translateX(-50%) !important;
+                opacity: 0.3 !important; max-width: 220px;
             }
-
-            .brand-features { display: none; }
-
-            .login-form-panel {
-                padding: 36px 32px;
+            .orbit-wrap { width: 120px; height: 120px; margin-bottom: 12px; }
+            .hero-title { font-size: 18px; }
+            .hero-desc { font-size: 10px; margin-bottom: 12px; }
+            .features, .status-bar { display: none; }
+            .form-side {
+                flex: 1; width: 100%;
+                align-items: flex-end;
+                padding: 24px 24px 48px;
             }
+            .login-card { max-width: 420px; margin: 0 auto; }
+            [data-theme="light"] .brand-side { background: none; }
+            [data-theme="light"] .brand-logo-light { display: none; }
+        }
+        @media (max-width: 480px) {
+            .form-side { padding: 16px 16px 32px; }
+            .login-card { padding: 36px 24px 28px; border-radius: 14px; }
+            .card-title { font-size: 22px; }
+            .brand-content { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .bg-glow, .float-item { animation: none !important; }
+            .brand-content, .login-card { animation: none !important; opacity: 1 !important; transform: none !important; }
         }
     </style>
 </head>
 <body>
-    <div class="login-wrapper">
-        <!-- Left Brand Panel -->
-        <div class="login-brand">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="page">
+        <!-- Background -->
+        <div class="bg-layer" aria-hidden="true">
+            <div class="bg-noise"></div>
+            <div class="bg-glow bg-glow-1"></div>
+            <div class="bg-glow bg-glow-2"></div>
+            <div class="bg-glow bg-glow-3"></div>
+            <div class="floating-items" id="floatingItems"></div>
+        </div>
+
+        <!-- Left Brand -->
+        <div class="brand-side">
             <div class="brand-content">
-                <div class="brand-logo">
+                <!-- Dark mode orbit -->
+                <div class="orbit-wrap">
+                    <svg class="orbit-svg" viewBox="0 0 320 320" fill="none">
+                        <circle cx="160" cy="160" r="148" stroke="rgba(79,110,247,0.08)" stroke-width="1" stroke-dasharray="4 8" class="ring-outer"/>
+                        <circle cx="160" cy="160" r="110" stroke="rgba(79,110,247,0.12)" stroke-width="1" class="ring-mid"/>
+                        <circle cx="160" cy="160" r="70" stroke="rgba(96,165,250,0.15)" stroke-width="1.5" stroke-dasharray="6 4" class="ring-inner"/>
+
+                        <line x1="160" y1="160" x2="160" y2="12" stroke="rgba(79,110,247,0.06)" stroke-width="0.5"/>
+                        <line x1="160" y1="160" x2="288" y2="234" stroke="rgba(79,110,247,0.06)" stroke-width="0.5"/>
+                        <line x1="160" y1="160" x2="32" y2="234" stroke="rgba(79,110,247,0.06)" stroke-width="0.5"/>
+
+                        <circle cx="160" cy="160" r="28" fill="rgba(79,110,247,0.06)" stroke="rgba(79,110,247,0.2)" stroke-width="1"/>
+                        <circle cx="160" cy="160" r="14" fill="rgba(79,110,247,0.1)" stroke="rgba(96,165,250,0.3)" stroke-width="1"/>
+                        <circle cx="160" cy="160" r="5" fill="#4f6ef7" class="core-dot"/>
+
+                        <circle cx="160" cy="160" r="20" fill="none" stroke="rgba(79,110,247,0.3)" stroke-width="1" class="pulse-ring"/>
+                        <circle cx="160" cy="160" r="20" fill="none" stroke="rgba(79,110,247,0.3)" stroke-width="1" class="pulse-ring pulse-ring-2"/>
+
+                        <g><circle cx="160" cy="12" r="16" fill="rgba(6,15,30,0.8)" stroke="rgba(79,110,247,0.3)" stroke-width="1"/>
+                        <text x="160" y="16" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="700">AC</text></g>
+                        <g><circle cx="288" cy="234" r="16" fill="rgba(6,15,30,0.8)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+                        <text x="288" y="238" text-anchor="middle" fill="#22d3ee" font-size="11" font-weight="700">🎯</text></g>
+                        <g><circle cx="32" cy="234" r="16" fill="rgba(6,15,30,0.8)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+                        <text x="32" y="238" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">📊</text></g>
+
+                        <g><circle cx="270" cy="110" r="12" fill="rgba(6,15,30,0.8)" stroke="rgba(79,110,247,0.25)" stroke-width="1"/>
+                        <text x="270" y="114" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600">🏪</text></g>
+                        <g><circle cx="50" cy="110" r="12" fill="rgba(6,15,30,0.8)" stroke="rgba(34,211,238,0.25)" stroke-width="1"/>
+                        <text x="50" y="114" text-anchor="middle" fill="#22d3ee" font-size="9" font-weight="600">📋</text></g>
+
+                        <circle cx="160" cy="90" r="3" fill="rgba(96,165,250,0.4)" class="inner-node"/>
+                        <circle cx="222" cy="195" r="3" fill="rgba(34,211,238,0.4)" class="inner-node"/>
+                        <circle cx="98" cy="195" r="3" fill="rgba(167,139,250,0.4)" class="inner-node"/>
+                    </svg>
+                </div>
+
+                <!-- Light mode logo -->
+                <div class="brand-logo-light">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
                         <rect x="3" y="3" width="7" height="7" rx="2" fill="#fff"/>
                         <rect x="14" y="3" width="7" height="7" rx="2" fill="#fff" opacity="0.7"/>
@@ -416,91 +624,119 @@
                         <rect x="14" y="14" width="7" height="7" rx="2" fill="#fff" opacity="0.5"/>
                     </svg>
                 </div>
-                <h1 class="brand-title">活动中心</h1>
-                <p class="brand-subtitle">Campaign Center</p>
 
-                <ul class="brand-features">
-                    <li>
-                        <i class="fas fa-layer-group"></i>
-                        <span>多平台活动统一管理</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-chart-line"></i>
-                        <span>实时数据分析与监控</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-shield-alt"></i>
-                        <span>完整的权限与审核体系</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-cogs"></i>
-                        <span>灵活的活动配置引擎</span>
-                    </li>
-                </ul>
-            </div>
+                <div class="hero-text">
+                    <h2 class="hero-title">活动中心<span class="hero-title-thin">管理系统</span></h2>
+                    <p class="hero-desc">多平台 · 智能管理 · 安全可靠</p>
 
-            <div class="brand-footer">
-                © 2026 活动中心管理系统 · 版权所有
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 20 20" width="18" height="18" fill="none">
+                                    <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.2" style="color:var(--accent)"/>
+                                    <circle cx="10" cy="10" r="3" fill="var(--accent)"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="feature-num">50+</div>
+                                <div class="feature-label">活动模板</div>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon feature-icon--2">
+                                <svg viewBox="0 0 20 20" width="18" height="18" fill="none">
+                                    <path d="M10 2 L10 10 L16 14" stroke="var(--accent-2)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <circle cx="10" cy="10" r="8" stroke="var(--accent-2)" stroke-width="1.2"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="feature-num">24/7</div>
+                                <div class="feature-label">实时监控</div>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon feature-icon--3">
+                                <svg viewBox="0 0 20 20" width="18" height="18" fill="none">
+                                    <path d="M4 12 L8 16 L16 4" stroke="var(--accent-3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="10" cy="10" r="8" stroke="var(--accent-3)" stroke-width="1.2"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="feature-num">99.9%</div>
+                                <div class="feature-label">系统稳定</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="status-bar">
+                        <span class="status-dot"></span>
+                        <span>系统运行正常</span>
+                        <span class="status-sep">|</span>
+                        <span>v2.0</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Right Form Panel -->
-        <div class="login-form-panel">
-            <div class="form-header">
-                <h2>账号登录</h2>
-                <p>请输入您的账号信息登录管理后台</p>
-            </div>
+        <!-- Right Login Card -->
+        <div class="form-side">
+            <div class="login-card">
+                <div class="card-glow"></div>
 
-            <div class="error-message" id="errorMessage">
-                <i class="fas fa-exclamation-circle"></i>
-                <span id="errorText">邮箱或密码错误，请重试</span>
-            </div>
-
-            <form id="loginForm" onsubmit="handleLogin(event)" autocomplete="off">
-                <div class="form-group">
-                    <label class="form-label">邮箱地址</label>
-                    <div class="input-wrapper">
-                        <input type="email" class="form-input" id="email" placeholder="请输入邮箱地址" required>
-                        <i class="fas fa-envelope input-icon"></i>
-                    </div>
+                <div class="card-head">
+                    <h1 class="card-title">账号登录</h1>
+                    <p class="card-sub">请输入管理员凭证登录后台</p>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">登录密码</label>
-                    <div class="input-wrapper">
-                        <input type="password" class="form-input" id="password" placeholder="请输入登录密码" required>
-                        <i class="fas fa-lock input-icon"></i>
-                        <button type="button" class="password-toggle" onclick="togglePassword()">
-                            <i class="fas fa-eye" id="toggleIcon"></i>
-                        </button>
-                    </div>
+                <div class="error-msg" id="errorMsg">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorText">邮箱或密码错误</span>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">验证码</label>
-                    <div class="captcha-row">
-                        <div class="input-wrapper">
-                            <input type="text" class="form-input" id="captcha" placeholder="请输入验证码" maxlength="4" required autocomplete="off">
-                            <i class="fas fa-shield-alt input-icon"></i>
-                        </div>
-                        <div class="captcha-image" id="captchaImage" onclick="generateCaptcha()" title="点击刷新验证码">
-                            <canvas id="captchaCanvas" width="120" height="44"></canvas>
+                <form id="loginForm" onsubmit="handleLogin(event)" autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label">邮箱地址</label>
+                        <div class="input-wrap">
+                            <input type="email" class="form-input" id="email" placeholder="请输入邮箱地址" required>
+                            <i class="fas fa-envelope input-icon"></i>
                         </div>
                     </div>
-                </div>
 
-                <div class="ip-info">
-                    <i class="fas fa-globe"></i>
-                    <span>当前IP：<span class="ip-address" id="currentIP">获取中...</span></span>
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">登录密码</label>
+                        <div class="input-wrap">
+                            <input type="password" class="form-input" id="password" placeholder="请输入登录密码" required>
+                            <i class="fas fa-lock input-icon"></i>
+                            <button type="button" class="pwd-toggle" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                    </div>
 
-                <button type="submit" class="btn-login" id="loginBtn">
-                    <span>登 录</span>
-                </button>
-            </form>
+                    <div class="form-group">
+                        <label class="form-label">验证码</label>
+                        <div class="captcha-row">
+                            <div class="input-wrap">
+                                <input type="text" class="form-input" id="captcha" placeholder="请输入验证码" maxlength="4" required autocomplete="off">
+                                <i class="fas fa-shield-alt input-icon"></i>
+                            </div>
+                            <div class="captcha-box" id="captchaBox" onclick="generateCaptcha()" title="点击刷新验证码">
+                                <canvas id="captchaCanvas" width="120" height="46"></canvas>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="form-footer">
-                如需帮助，请联系系统管理员
+                    <div class="ip-bar">
+                        <i class="fas fa-globe"></i>
+                        <span>当前IP：<span class="ip-addr" id="currentIP">获取中...</span></span>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="loginBtn">
+                        <span>登 录</span>
+                    </button>
+                </form>
+
+                <div class="card-footer">© 2026 活动中心管理系统 · v2.0</div>
             </div>
         </div>
     </div>
@@ -508,60 +744,97 @@
     <script>
         let captchaCode = '';
 
+        /* ── Theme ── */
+        function getPreferredTheme() {
+            const saved = localStorage.getItem('ac-theme');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('ac-theme', theme);
+            const icon = document.getElementById('themeIcon');
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            generateCaptcha();
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
+        /* ── Floating items ── */
+        function createFloatingItems() {
+            const container = document.getElementById('floatingItems');
+            const icons = ['🎁', '🏆', '🎯', '⭐', '💎', '🔥', '🎪', '🎲', '🎮', '🎰', '📊', '💰'];
+            for (let i = 0; i < 12; i++) {
+                const el = document.createElement('div');
+                el.className = 'float-item';
+                el.innerHTML = `<span>${icons[i]}</span>`;
+                const size = 28 + Math.random() * 16;
+                el.style.cssText = `
+                    left:${5+Math.random()*90}%; top:${5+Math.random()*90}%;
+                    width:${size}px; height:${size}px;
+                    --dur:${18+Math.random()*14}s;
+                    --dx:${15+Math.random()*25}px;
+                    animation-delay:${-Math.random()*20}s;
+                    border-color: rgba(var(--accent-rgb), ${0.15+Math.random()*0.1});
+                `;
+                container.appendChild(el);
+            }
+        }
+
+        /* ── Captcha ── */
         function generateCaptcha() {
             const canvas = document.getElementById('captchaCanvas');
             const ctx = canvas.getContext('2d');
             const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             captchaCode = '';
 
-            canvas.width = 120;
-            canvas.height = 44;
-
-            ctx.fillStyle = '#f0f2f5';
-            ctx.fillRect(0, 0, 120, 44);
+            canvas.width = 120; canvas.height = 46;
+            ctx.fillStyle = isDark ? '#0d1526' : '#f0f2f5';
+            ctx.fillRect(0, 0, 120, 46);
 
             for (let i = 0; i < 4; i++) {
                 const char = chars[Math.floor(Math.random() * chars.length)];
                 captchaCode += char;
-
-                ctx.font = `${600 + Math.random() * 100} ${20 + Math.random() * 4}px -apple-system, sans-serif`;
-                ctx.fillStyle = `hsl(${Math.random() * 360}, 50%, 40%)`;
-
+                const hue = 220 + Math.random() * 60;
+                ctx.font = `${600+Math.random()*100} ${19+Math.random()*3}px 'Plus Jakarta Sans', sans-serif`;
+                ctx.fillStyle = isDark
+                    ? `hsl(${hue}, 70%, 65%)`
+                    : `hsl(${hue}, 50%, 40%)`;
                 ctx.save();
-                const x = 14 + i * 26;
-                const y = 28 + Math.random() * 6 - 3;
-                ctx.translate(x, y);
-                ctx.rotate((Math.random() - 0.5) * 0.4);
+                ctx.translate(14 + i * 26, 28 + (Math.random()-0.5)*6);
+                ctx.rotate((Math.random()-0.5)*0.4);
                 ctx.fillText(char, 0, 0);
                 ctx.restore();
             }
 
             for (let i = 0; i < 3; i++) {
                 ctx.beginPath();
-                ctx.moveTo(Math.random() * 120, Math.random() * 44);
-                ctx.lineTo(Math.random() * 120, Math.random() * 44);
-                ctx.strokeStyle = `rgba(${Math.random()*150}, ${Math.random()*150}, ${Math.random()*150}, 0.3)`;
-                ctx.lineWidth = 1;
+                ctx.moveTo(Math.random()*120, Math.random()*46);
+                ctx.lineTo(Math.random()*120, Math.random()*46);
+                ctx.strokeStyle = isDark ? 'rgba(79,110,247,0.1)' : 'rgba(0,0,0,0.06)';
+                ctx.lineWidth = 0.5;
                 ctx.stroke();
             }
-
-            for (let i = 0; i < 40; i++) {
-                ctx.fillStyle = `rgba(${Math.random()*200}, ${Math.random()*200}, ${Math.random()*200}, 0.4)`;
-                ctx.fillRect(Math.random() * 120, Math.random() * 44, 2, 2);
+            for (let i = 0; i < 30; i++) {
+                ctx.fillStyle = isDark ? 'rgba(96,165,250,0.12)' : 'rgba(0,0,0,0.08)';
+                ctx.fillRect(Math.random()*120, Math.random()*46, 1.5, 1.5);
             }
         }
 
+        /* ── IP ── */
         function fetchIP() {
             fetch('https://api.ipify.org?format=json')
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById('currentIP').textContent = data.ip;
-                })
-                .catch(() => {
-                    document.getElementById('currentIP').textContent = '无法获取';
-                });
+                .then(r => r.json())
+                .then(d => { document.getElementById('currentIP').textContent = d.ip; })
+                .catch(() => { document.getElementById('currentIP').textContent = '无法获取'; });
         }
 
+        /* ── Password toggle ── */
         function togglePassword() {
             const pwd = document.getElementById('password');
             const icon = document.getElementById('toggleIcon');
@@ -574,44 +847,36 @@
             }
         }
 
+        /* ── Login ── */
         function handleLogin(e) {
             e.preventDefault();
-
-            const loginBtn = document.getElementById('loginBtn');
-            const errorMsg = document.getElementById('errorMessage');
-            const errorText = document.getElementById('errorText');
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const errEl = document.getElementById('errorMsg');
+            const errText = document.getElementById('errorText');
             const captchaInput = document.getElementById('captcha').value;
 
-            errorMsg.classList.remove('show');
+            errEl.classList.remove('show');
 
             if (captchaInput.toLowerCase() !== captchaCode.toLowerCase()) {
-                errorText.textContent = '验证码错误，请重新输入';
-                errorMsg.classList.add('show');
+                errText.textContent = '验证码错误，请重新输入';
+                errEl.classList.add('show');
                 generateCaptcha();
                 document.getElementById('captcha').value = '';
                 document.getElementById('captcha').focus();
                 return;
             }
 
-            loginBtn.classList.add('loading');
-            loginBtn.innerHTML = '<div class="spinner"></div><span>登录中...</span>';
+            btn.classList.add('loading');
+            btn.innerHTML = '<div class="spinner"></div><span>登录中...</span>';
 
             setTimeout(() => {
-                if (email && password) {
-                    window.location.href = 'dashboard.html';
-                } else {
-                    errorText.textContent = '邮箱或密码错误，请重试';
-                    errorMsg.classList.add('show');
-                    loginBtn.classList.remove('loading');
-                    loginBtn.innerHTML = '<span>登 录</span>';
-                    generateCaptcha();
-                }
+                window.location.href = 'dashboard.html';
             }, 1500);
         }
 
-        generateCaptcha();
+        /* ── Init ── */
+        applyTheme(getPreferredTheme());
+        createFloatingItems();
         fetchIP();
         document.getElementById('email').focus();
     </script>
