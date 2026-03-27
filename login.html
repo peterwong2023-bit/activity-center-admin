@@ -88,17 +88,17 @@
             --error-bg: #fef2f2;
             --error-border: #fecaca;
             --error-text: #dc2626;
-            --brand-bg: linear-gradient(135deg, #eef2ff 0%, #e8e0ff 50%, #f0e7ff 100%);
+            --brand-bg: linear-gradient(135deg, #dbeafe 0%, #e0eeff 40%, #eff6ff 100%);
             --brand-title: #1e293b;
-            --brand-sub: #64748b;
+            --brand-sub: #475569;
             --sell-bg: rgba(79, 110, 247, 0.06);
             --sell-border: rgba(79, 110, 247, 0.1);
             --sell-hover: rgba(79, 110, 247, 0.1);
-            --sell-icon1: #eef2ff;
-            --sell-icon2: #ecfeff;
+            --sell-icon1: #dbeafe;
+            --sell-icon2: #cffafe;
             --sell-icon3: #ede9fe;
-            --sell-ic1: #4f6ef7;
-            --sell-ic2: #06b6d4;
+            --sell-ic1: #3b82f6;
+            --sell-ic2: #0891b2;
             --sell-ic3: #7c3aed;
             --noise: 0;
             --captcha-bg: #f0f2f5;
@@ -144,13 +144,13 @@
             content: ''; position: absolute;
             top: -100px; right: -100px;
             width: 300px; height: 300px; border-radius: 50%;
-            background: rgba(79,110,247,0.05);
+            background: rgba(79, 110, 247, 0.05);
         }
         [data-theme="light"] .brand::after {
             content: ''; position: absolute;
             bottom: -80px; left: -50px;
             width: 220px; height: 220px; border-radius: 50%;
-            background: rgba(124,58,237,0.04);
+            background: rgba(59, 130, 246, 0.04);
         }
         .brand-inner {
             display: flex; flex-direction: column; align-items: center;
@@ -170,8 +170,8 @@
             border: 1px solid rgba(79,110,247,0.15);
         }
         [data-theme="light"] .brand-logo {
-            background: rgba(79,110,247,0.08);
-            border: 1px solid rgba(79,110,247,0.12);
+            background: rgba(79, 110, 247, 0.08);
+            border: 1px solid rgba(79, 110, 247, 0.12);
         }
 
         .brand-name {
@@ -189,14 +189,14 @@
             background: rgba(var(--primary-rgb), 0.3);
             margin-bottom: 24px;
         }
-        [data-theme="light"] .brand-divider { background: rgba(79,110,247,0.2); }
+        [data-theme="light"] .brand-divider { background: rgba(79, 110, 247, 0.2); }
 
         .brand-tagline {
             font-size: 14px; color: var(--brand-sub);
             text-align: center; line-height: 1.8;
             margin-bottom: 40px;
         }
-        [data-theme="light"] .brand-tagline { color: #64748b; }
+        [data-theme="light"] .brand-tagline { color: #475569; }
 
         .sell-list { display: flex; flex-direction: column; gap: 10px; width: 100%; }
         .sell-item {
