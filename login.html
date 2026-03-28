@@ -88,18 +88,18 @@
             --error-bg: #fef2f2;
             --error-border: #fecaca;
             --error-text: #dc2626;
-            --brand-bg: linear-gradient(135deg, #dbeafe 0%, #e0eeff 40%, #eff6ff 100%);
-            --brand-title: #1e293b;
-            --brand-sub: #475569;
+            --brand-bg: linear-gradient(135deg, #1e3a5f 0%, #1a2744 50%, #0f172a 100%);
+            --brand-title: #f1f5f9;
+            --brand-sub: rgba(148, 163, 184, 0.6);
             --sell-bg: rgba(79, 110, 247, 0.06);
             --sell-border: rgba(79, 110, 247, 0.1);
             --sell-hover: rgba(79, 110, 247, 0.1);
-            --sell-icon1: #dbeafe;
-            --sell-icon2: #cffafe;
-            --sell-icon3: #ede9fe;
-            --sell-ic1: #3b82f6;
-            --sell-ic2: #0891b2;
-            --sell-ic3: #7c3aed;
+            --sell-icon1: rgba(96, 165, 250, 0.12);
+            --sell-icon2: rgba(34, 211, 238, 0.12);
+            --sell-icon3: rgba(167, 139, 250, 0.12);
+            --sell-ic1: #60a5fa;
+            --sell-ic2: #22d3ee;
+            --sell-ic3: #a78bfa;
             --noise: 0;
             --captcha-bg: #f0f2f5;
         }
@@ -144,13 +144,13 @@
             content: ''; position: absolute;
             top: -100px; right: -100px;
             width: 300px; height: 300px; border-radius: 50%;
-            background: rgba(79, 110, 247, 0.05);
+            background: rgba(255,255,255,0.03);
         }
         [data-theme="light"] .brand::after {
             content: ''; position: absolute;
             bottom: -80px; left: -50px;
             width: 220px; height: 220px; border-radius: 50%;
-            background: rgba(59, 130, 246, 0.04);
+            background: rgba(255,255,255,0.02);
         }
         .brand-inner {
             display: flex; flex-direction: column; align-items: center;
@@ -170,8 +170,8 @@
             border: 1px solid rgba(79,110,247,0.15);
         }
         [data-theme="light"] .brand-logo {
-            background: rgba(79, 110, 247, 0.08);
-            border: 1px solid rgba(79, 110, 247, 0.12);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .brand-name {
@@ -189,14 +189,14 @@
             background: rgba(var(--primary-rgb), 0.3);
             margin-bottom: 24px;
         }
-        [data-theme="light"] .brand-divider { background: rgba(79, 110, 247, 0.2); }
+        [data-theme="light"] .brand-divider { background: rgba(255,255,255,0.15); }
 
         .brand-tagline {
             font-size: 14px; color: var(--brand-sub);
             text-align: center; line-height: 1.8;
             margin-bottom: 40px;
         }
-        [data-theme="light"] .brand-tagline { color: #475569; }
+        [data-theme="light"] .brand-tagline { color: rgba(148, 163, 184, 0.6); }
 
         .sell-list { display: flex; flex-direction: column; gap: 10px; width: 100%; }
         .sell-item {
@@ -227,8 +227,8 @@
         .sell-desc {
             font-size: 11.5px; color: var(--brand-sub);
         }
-        [data-theme="light"] .sell-title { color: #1e293b; }
-        [data-theme="light"] .sell-desc  { color: #64748b; }
+        [data-theme="light"] .sell-title { color: #f1f5f9; }
+        [data-theme="light"] .sell-desc  { color: rgba(148, 163, 184, 0.5); }
 
         /* ══ Right Card ══ */
         .form-side {
