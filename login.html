@@ -161,7 +161,7 @@
         @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
         .brand-logo {
-            width: 56px; height: 56px; border-radius: 14px;
+            width: 68px; height: 68px; border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 28px;
         }
@@ -175,12 +175,12 @@
         }
 
         .brand-name {
-            font-size: 28px; font-weight: 700;
+            font-size: 34px; font-weight: 700;
             color: var(--brand-title); margin-bottom: 4px;
             letter-spacing: -0.3px;
         }
         .brand-en {
-            font-size: 12px; font-weight: 400;
+            font-size: 13px; font-weight: 400;
             color: var(--brand-sub); text-transform: uppercase;
             letter-spacing: 3px; margin-bottom: 10px;
         }
@@ -192,43 +192,41 @@
         [data-theme="light"] .brand-divider { background: rgba(255,255,255,0.15); }
 
         .brand-tagline {
-            font-size: 14px; color: var(--brand-sub);
-            text-align: center; line-height: 1.8;
-            margin-bottom: 40px;
+            font-size: 15px; color: var(--brand-sub);
+            text-align: center; line-height: 1.6;
+            margin-bottom: 36px;
         }
         [data-theme="light"] .brand-tagline { color: rgba(148, 163, 184, 0.6); }
 
-        .sell-list { display: flex; flex-direction: column; gap: 10px; width: 100%; }
-        .sell-item {
-            display: flex; align-items: center; gap: 14px;
-            padding: 14px 18px;
-            background: var(--sell-bg);
-            border: 1px solid var(--sell-border);
-            border-radius: 10px;
+        .sell-tags {
+            display: flex; align-items: center; gap: 6px;
+            flex-wrap: wrap; justify-content: center;
+        }
+        .sell-tag {
+            display: flex; align-items: center; gap: 6px;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            font-size: 12px; font-weight: 500;
+            color: rgba(148, 163, 184, 0.8);
             transition: all 0.2s;
         }
-        .sell-item:hover {
-            background: var(--sell-hover);
-            transform: translateX(3px);
+        .sell-tag:hover {
+            background: rgba(255,255,255,0.1);
+            color: #e2e8f0;
         }
-        .sell-icon {
-            width: 36px; height: 36px; flex-shrink: 0;
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 15px;
+        .sell-tag i {
+            font-size: 11px;
+            color: var(--sell-ic1);
         }
-        .sell-icon-1 { background: var(--sell-icon1); color: var(--sell-ic1); }
-        .sell-icon-2 { background: var(--sell-icon2); color: var(--sell-ic2); }
-        .sell-icon-3 { background: var(--sell-icon3); color: var(--sell-ic3); }
-        .sell-title {
-            font-size: 13px; font-weight: 600;
-            color: var(--brand-title); margin-bottom: 1px;
+        .sell-tag:nth-child(2) i { color: var(--sell-ic2); }
+        .sell-tag:nth-child(3) i { color: var(--sell-ic3); }
+        .sell-dot {
+            width: 3px; height: 3px; border-radius: 50%;
+            background: rgba(148, 163, 184, 0.25);
+            flex-shrink: 0;
         }
-        .sell-desc {
-            font-size: 11.5px; color: var(--brand-sub);
-        }
-        [data-theme="light"] .sell-title { color: #f1f5f9; }
-        [data-theme="light"] .sell-desc  { color: rgba(148, 163, 184, 0.5); }
 
         /* ══ Right Card ══ */
         .form-side {
@@ -356,7 +354,7 @@
                 opacity: 0.2 !important; max-width: 200px;
             }
             .brand-name { font-size: 20px; }
-            .brand-tagline, .sell-list { display: none; }
+            .brand-tagline, .sell-tags { display: none; }
             .form-side { flex: 1; width: 100%; align-items: flex-end; padding: 24px 24px 48px; }
             .login-card { max-width: 420px; margin: 0 auto; }
             [data-theme="light"] .brand { background: none; }
@@ -388,7 +386,7 @@
         <div class="brand">
             <div class="brand-inner">
                 <div class="brand-logo">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
                         <rect x="3" y="3" width="7" height="7" rx="2" fill="currentColor" style="color: var(--brand-title)"/>
                         <rect x="14" y="3" width="7" height="7" rx="2" fill="currentColor" opacity="0.7" style="color: var(--brand-title)"/>
                         <rect x="3" y="14" width="7" height="7" rx="2" fill="currentColor" opacity="0.7" style="color: var(--brand-title)"/>
@@ -398,32 +396,13 @@
                 <h1 class="brand-name">活动中心</h1>
                 <p class="brand-en">Campaign Center</p>
                 <div class="brand-divider"></div>
-                <p class="brand-tagline">
-                    一站式活动营销管理平台<br>
-                    高效配置 · 精准获客 · 数据驱动
-                </p>
-                <div class="sell-list">
-                    <div class="sell-item">
-                        <div class="sell-icon sell-icon-1"><i class="fas fa-bolt"></i></div>
-                        <div>
-                            <div class="sell-title">高效活动配置</div>
-                            <div class="sell-desc">多种玩法模板，分钟级快速上线</div>
-                        </div>
-                    </div>
-                    <div class="sell-item">
-                        <div class="sell-icon sell-icon-2"><i class="fas fa-users"></i></div>
-                        <div>
-                            <div class="sell-title">精准用户触达</div>
-                            <div class="sell-desc">智能分群投放，最大化活动效果</div>
-                        </div>
-                    </div>
-                    <div class="sell-item">
-                        <div class="sell-icon sell-icon-3"><i class="fas fa-chart-line"></i></div>
-                        <div>
-                            <div class="sell-title">全链路数据分析</div>
-                            <div class="sell-desc">实时监控转化漏斗，持续优化ROI</div>
-                        </div>
-                    </div>
+                <p class="brand-tagline">一站式活动营销管理平台</p>
+                <div class="sell-tags">
+                    <div class="sell-tag"><i class="fas fa-bolt"></i>高效配置</div>
+                    <div class="sell-dot"></div>
+                    <div class="sell-tag"><i class="fas fa-users"></i>精准获客</div>
+                    <div class="sell-dot"></div>
+                    <div class="sell-tag"><i class="fas fa-chart-line"></i>数据驱动</div>
                 </div>
             </div>
         </div>
